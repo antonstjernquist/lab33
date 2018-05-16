@@ -1,0 +1,11 @@
+header {
+  height: 65px;
+  background-color: #eee;
+  color: #35373d;
+  padding: 5px;
+}
+
+header > h1 {
+  margin: 0px;
+  padding: 0px;
+}

@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/header.js';
+import {connect} from 'react-redux';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
+        <Header />
+        <p> Value is: {this.props.value}</p>
         <h1> Lab33 for fuck sake mate </h1>
       </div>
     );
   }
 }
 
-export default App;
+
+/* Connect this component to redux Store */
+let mapPropsFromStoreState = state => {
+  return {
+    value: state.value
+  };
+}
+
+export default connect(mapPropsFromStoreState)(App);
