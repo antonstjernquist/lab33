@@ -5,7 +5,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <h1> Header <i class="material-icons">face</i> </h1>
+        <h1> Header <i className="material-icons">face</i> </h1>
       </header>
     );
   }
