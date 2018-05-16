@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/header.js';
+import {connect} from 'react-redux';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Header />
+        <p> Value is: {this.props.value}</p>
+        <h1> Lab33 for fuck sake mate </h1>
       </div>
     );
   }
 }
 
-export default App;
+
+/* Connect this component to redux Store */
+let mapPropsFromStoreState = state => {
+  return {
+    value: state.value
+  };
+}
+
+export default connect(mapPropsFromStoreState)(App);
