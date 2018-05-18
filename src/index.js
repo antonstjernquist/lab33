@@ -5,10 +5,11 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import rootReducer from './reducers/rootReducer.js';
+import rootReducer from './reducers/reducers.js';
 
 const initialState = {
-    value: 4
+    value: 4,
+    user: null /* Null = no user logged in */
 };
 
 

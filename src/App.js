@@ -7,15 +7,14 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <p> Value is: {this.props.value}</p>
-        <h1> Lab33 for fuck sake mate </h1>
+        <p> Value from redux store is: {this.props.value}</p>
       </div>
     );
   }
 }
 
 
-/* Connect this component to redux Store */
+/* Map redux store to the props of this components */
 let mapPropsFromStoreState = state => {
   return {
     value: state.value
