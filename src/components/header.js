@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {actionLogin, actionLogout} from '../actions/actions.js';
-import '../css/header.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { actionLogin, actionLogout } from "../actions/actions.js";
+import "../css/header.css";
 
 /*
 Material design icons example:
@@ -10,27 +10,25 @@ Material design icons example:
 
 */
 
-
 class Header extends Component {
-
   handleLogin = event => {
-    console.log('Logging in..');
+    console.log("Logging in..");
     let user = {
-      name: 'Anton',
+      name: "Anton",
       age: 23
-    }
+    };
     let action = actionLogin(user);
     this.props.dispatch(action);
-  }
+  };
 
   handleLogout = event => {
     let action = actionLogout();
     this.props.dispatch(action);
-  }
+  };
 
   render() {
-    <p> User is: {this.props.user ? this.props.user.name : 'none'} </p>
-    if(this.props.user){
+    <p> User is: {this.props.user ? this.props.user.name : "none"} </p>;
+    if (this.props.user) {
       return (
         <header>
           <div className="headerWrapper">
@@ -40,7 +38,7 @@ class Header extends Component {
             </div>
           </div>
         </header>
-      )
+      );
     } else {
       return (
         <header>
@@ -60,6 +58,6 @@ let mapPropsFromStoreState = state => {
   return {
     user: state.user
   };
-}
+};
 
 export default connect(mapPropsFromStoreState)(Header);

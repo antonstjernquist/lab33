@@ -1,23 +1,23 @@
-import { LOGIN, LOGOUT } from './constants.js';
+import { LOGIN, LOGOUT } from "./constants.js";
 
 let actionUpdate = amount => {
   return {
-    type: 'UPDATE',
+    type: "UPDATE",
     amount
   };
-}
+};
 
 let actionLogin = user => {
   return {
     type: LOGIN,
     user
-  }
-}
+  };
+};
 
 let actionLogout = () => {
   return {
     type: LOGOUT
-  }
-}
+  };
+};
 
-export {actionUpdate, actionLogin, actionLogout};
+export { actionUpdate, actionLogin, actionLogout };
