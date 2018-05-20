@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
 import { LOGIN, LOGOUT } from "../actions/constants.js";
-import { doSignOut, doLogInWithGoogle } from "../firebase/auth.js";
 let valueReducer = (state = 0, action) => {
   switch (action.type) {
     case "UPDATE":
@@ -15,12 +14,10 @@ let userReducer = (state = null, action) => {
   console.log("userReducer ran. Action = ", action);
   switch (action.type) {
     case LOGIN:
-      doLogInWithGoogle();
-      return action.user;
+      return state = action.user;
 
     case LOGOUT:
-      doSignOut();
-      return null;
+      return state = null;
 
     default:
       return state;

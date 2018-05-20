@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { actionLogin, actionLogout } from "../actions/actions.js";
 import "../css/header.css";
+import { doSignOut, doLogInWithGoogle } from "../firebase/auth.js";
 
 /*
 Material design icons example:
@@ -11,23 +12,26 @@ Material design icons example:
 */
 
 class Header extends Component {
-  handleLogin = event => {
+  constructor(props) {
+    super(props);
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+  async handleLogin(event) {
+    console.log(this);
     console.log("Logging in..");
-    let user = {
-      name: "Anton",
-      age: 23
-    };
+    const user = await doLogInWithGoogle();
+    console.log("USER", user);
     let action = actionLogin(user);
     this.props.dispatch(action);
-  };
+  }
 
   handleLogout = event => {
     let action = actionLogout();
+    doSignOut();
     this.props.dispatch(action);
   };
 
   render() {
-    <p> User is: {this.props.user ? this.props.user.name : "none"} </p>;
     if (this.props.user) {
       return (
         <header>
