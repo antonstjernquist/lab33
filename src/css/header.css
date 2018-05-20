@@ -4,8 +4,9 @@ header {
   color: #1c1c20;
   margin: 0px;
   padding: 0px;
-  border-bottom: 2px solid #f2ebeb;
+  box-shadow: 0 58px 33px -19px #eaedde99;
 }
+
 .headerWrapper {
   height: 100%;
   margin: 0px auto;
@@ -13,24 +14,28 @@ header {
   align-items: center;
   justify-content: space-between;
   max-width: 1400px;
-  padding: 0px 35px;
+  padding: 0px 25px;
+  box-shadow: 0 -4px 27px -19px #535353;
+  margin-top: 20px;
 }
 
 .headerWrapper h1 {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 2.8em;
   margin: 0px;
   padding: 0px;
 }
+
 .headerWrapper button {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2em;
   border: none;
   padding: 0px;
   background-color: inherit;
   cursor: pointer;
 }
+
 .headerWrapper button:hover {
   color: #888;
 }

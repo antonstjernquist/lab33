@@ -10,14 +10,24 @@ let valueReducer = (state = 0, action) => {
   }
 };
 
+let selectTabReducer = (state = "home", action) => {
+  console.log("selectTabReducer ran. Action = ", action);
+  switch (action.type) {
+    case "SELECT":
+      return (state = action.item);
+    default:
+      return state;
+  }
+};
+
 let userReducer = (state = null, action) => {
   console.log("userReducer ran. Action = ", action);
   switch (action.type) {
     case LOGIN:
-      return state = action.user;
+      return (state = action.user);
 
     case LOGOUT:
-      return state = null;
+      return (state = null);
 
     default:
       return state;
@@ -26,7 +36,8 @@ let userReducer = (state = null, action) => {
 
 let rootReducer = combineReducers({
   value: valueReducer,
-  user: userReducer
+  user: userReducer,
+  selectedTab: selectTabReducer
 });
 
 export default rootReducer;

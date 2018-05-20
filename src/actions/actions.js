@@ -20,4 +20,11 @@ let actionLogout = () => {
   };
 };
 
-export { actionUpdate, actionLogin, actionLogout };
+const selectTab = item => {
+  return {
+    type: "SELECT",
+    item
+  };
+};
+
+export { selectTab, actionUpdate, actionLogin, actionLogout };
