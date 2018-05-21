@@ -12,6 +12,7 @@ const initialState = {
     value: 4,
     user: null, /* Null = no user logged in */
     products: [],
+    displayMessage: [],
     cart: {
       past: [],
       present:[],

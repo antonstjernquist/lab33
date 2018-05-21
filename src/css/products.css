@@ -59,6 +59,7 @@
 .shopWrapper button, .stylishButton {
   color: #fefefe;
   background-color: #232323;
+  margin: 5px;
   padding: 8px 16px;
   border: none;
   font-family: 'Roboto', sans-serif;

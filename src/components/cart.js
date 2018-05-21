@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { actionUndo, selectTab, actionRemoveFromCart, actionRemoveAllFromCart, actionAddToCart} from "../actions/actions.js";
+import { actionUndo, selectTab, actionRemoveFromCart, actionRemoveAllFromCart, actionAddToCart, actionSetMessage} from "../actions/actions.js";
 import "../css/cart.css";
 
 let Items = props => {
+
+  let calculateItemsLeft = item => {
+    return item.instore > props.cart.filter(x => x.uid === item.uid).length;
+  }
 
   let handleClick = () => {
     let action = selectTab('produkter');
@@ -17,14 +21,18 @@ let Items = props => {
   }
 
   let handleMinusOne = (event, index) => {
-    console.log('Item at index: ' + index + ' is: ', props.cart[index]);
     let action = actionRemoveFromCart(props.cart[index]);
     props.dispatch(action);
   }
 
   let handlePlusOne = (event, index) => {
-    let action = actionAddToCart(props.cart[index]);
-    props.dispatch(action);
+    let item = props.cart[index];
+    if(calculateItemsLeft(item)){
+      let action = actionAddToCart(item);
+      props.dispatch(action);
+    } else {
+      props.dispatch(actionSetMessage('Out of stock!'));
+    }
   }
 
   if(props.cart.length){
@@ -110,6 +118,31 @@ class Cart extends Component {
   }
 
   render() {
+    let displayedItems = []
+    let list = this.props.cart.map((x, index) => {
+
+      let quantity = 0;
+      this.props.cart.forEach(y => {
+        if(y.uid === x.uid) {
+          quantity += 1;
+        }
+      });
+
+      if(displayedItems.find(y => y === x.uid)){
+        return null;
+      } else {
+        displayedItems.push(x.uid);
+      }
+
+      return (
+        <div key={x.uid}>
+          <span className="spanTitle">{x.name} ({quantity})</span>
+          <br />
+          <span> {x.price * quantity},00 kr </span>
+        </div>
+      )
+    })
+
     return (
       <div className="cartWrapper">
         <div className="itemsAndHeaderWrapper">
@@ -119,6 +152,7 @@ class Cart extends Component {
               <h1> ({this.props.cart.length} items) </h1>
             </div>
             <p> This is your cart. <br/> From this view you can edit or remove items from your order </p>
+            <button className="stylishButton" onClick={event => this.props.dispatch(actionUndo())}> Undo </button>
           </div>
 
           <Items cart={this.props.cart} dispatch={this.props.dispatch}/>
@@ -127,7 +161,14 @@ class Cart extends Component {
         <div className="paymentDivWrapper">
           <div className="paymentDiv">
             <h1> Checkout </h1>
-            <p> This "kalas" total: {this.totalPrice() + ',00 kr'}</p>
+
+            <div className="paymentProduct">
+              {list.length ? list : 'Your items will appear here'}
+            </div>
+            <hr />
+            <div className="totalPriceDisplay">
+              <h4> Total: </h4> <h4> {this.totalPrice() + ',00 kr'} </h4>
+            </div>
             <button className="stylishButton"> Checkout </button>
           </div>
 

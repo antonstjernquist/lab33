@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { database } from '../firebase';
 import "../css/products.css";
-import { actionRetrieveProducts, actionAddProduct, actionAddToCart, actionUndo} from "../actions/actions";
+import { actionRetrieveProducts, actionAddToCart, actionUndo, actionSetMessage} from "../actions/actions";
 
 class Products extends Component {
 
   handleUpdateClick = () => {
     /* Defining the action */
-
+    this.props.dispatch(actionSetMessage('Updated redux store'));
 
     /* Starting to retrieve products */
     database.retrieveProducts()
@@ -39,19 +39,21 @@ class Products extends Component {
       let action = actionRetrieveProducts(data);
       this.props.dispatch(action)
     });
+    this.props.dispatch(actionSetMessage('Component mounted'));
   }
 
   handleAddToCartClick = (event, index) => {
-    console.log('Added to cart! Index: ' + index);
     /* Insert test case here possibly to confirm this is the correct item. We should not trust indexes. */
     let item = {
       ...this.props.products[index]
     };
     let action = actionAddToCart(item);
     this.props.dispatch(action);
+    this.props.dispatch(actionSetMessage('Added to cart'));
   }
 
   handleUndoClick = event => {
+    this.props.dispatch(actionSetMessage('Undo successful'));
     this.props.dispatch(actionUndo());
   }
 
@@ -78,32 +80,20 @@ class Products extends Component {
       });
     }
     /* Displays the cart */
-    let cartList = [];
-    if(this.props.cart.length){
-      cartList = this.props.cart.map((x, index) => {
-        return (
-          <div key={index + ':' + x.name }>
-            <p> Name: {x.name}</p>
-            <p> Price: {x.price}</p>
-          </div>);
-      });
-    }
 
       return (
           <div className="shopWrapper">
 
             <div className="sortingDiv">
               <p> Updates the redux store with information from firebase </p>
-              <button onClick={this.handleUpdateClick}> Update </button>
+              <div>
+                <button onClick={this.handleUpdateClick}> Update </button>
+                <button onClick={this.handleUndoClick} disabled={!this.props.canUndoCart}> Undo </button>
+              </div>
             </div>
 
             <div className="productHolder">
               {list ? list : null}
-            </div>
-            <button onClick={this.handleUndoClick} disabled={!this.props.canUndoCart}> Undo </button>
-            <p> This is the cart: </p>
-            <div className="tempCart">
-              {cartList}
             </div>
           </div>
       );

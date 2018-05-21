@@ -5,6 +5,7 @@ import { selectTab } from "../actions/actions";
 import Header from "./header.js";
 import Products from './products.js';
 import History from "./History.js";
+import DisplayMessage from "./displaymessage.js";
 import Cart from "./cart.js";
 
 function Tab(props) {
@@ -59,6 +60,7 @@ class Tabs extends Component {
 
     return (
       <div>
+        <DisplayMessage />
         <Header />
         <div className={"flex-column"}>
           <div className={"flex"}>{tabs}</div>

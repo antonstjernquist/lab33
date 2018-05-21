@@ -89,3 +89,11 @@
 .paymentDiv button {
   width: 100%;
 }
+.totalPriceDisplay > h4 {
+  display: inline-block;
+  margin: 4px 0px;
+  font-size: 1.2em;
+}
+.totalPriceDisplay > h4:last-child {
+  font-weight: 300;
+}

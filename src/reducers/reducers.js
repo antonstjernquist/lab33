@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { LOGIN, LOGOUT, RETRIEVE_PRODUCTS, ADD_PRODUCT, ADD_TO_CART, UNDO, REMOVE_FROM_CART, REMOVE_ALL_FROM_CART} from "../actions/constants.js";
+import { LOGIN, LOGOUT, RETRIEVE_PRODUCTS, ADD_PRODUCT, ADD_TO_CART, UNDO, REMOVE_FROM_CART, REMOVE_ALL_FROM_CART, SET_MESSAGE} from "../actions/constants.js";
 import { database } from '../firebase';
 
 /* Value reducer */
@@ -70,11 +70,6 @@ let cartReducer = (state = {past: [], present: [], future: []}, action) => {
   switch ( action.type ) {
 
     case ADD_TO_CART: {
-      console.log('REDUCER. Added to cart. Current state: ', state);
-      let list = state.present, found = false;
-
-      let updateItem = list.find(x => x.uid === action.data.uid);
-
       return {
 
         /* Retrieve all the past and add present to last */
@@ -144,13 +139,31 @@ let cartReducer = (state = {past: [], present: [], future: []}, action) => {
   }
 }
 
+/* Message reducer */
+let messageReducer = (state = [], action) => {
+
+  switch (action.type) {
+
+    case SET_MESSAGE:
+      return [...state, {message: action.data, type: action.type, created: new Date().getTime()}];
+
+    case 'REMOVE_MESSAGE':
+      return state.filter(x => x !== action.data);
+
+    default:
+      return state;
+  }
+
+}
+
 let rootReducer = combineReducers({
   value: valueReducer,
   user: userReducer,
   selectedTab: selectTabReducer,
   products: productReducer,
   history: historyReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  displayMessage: messageReducer
 });
 
 export default rootReducer;
