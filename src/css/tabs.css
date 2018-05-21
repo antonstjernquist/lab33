@@ -20,6 +20,13 @@
   font-family: "Roboto", sans-serif;
   border-top: 7px dotted #aca;
 }
+
+.flex button:focus,
+.flex button:active {
+  border-top: 7px dotted #aa5158 !important;
+  transition: 0.2s;
+
+}
 .flex button:hover {
     cursor: pointer;
 }

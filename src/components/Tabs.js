@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../css/tabs.css";
 import { connect } from "react-redux";
 import { selectTab } from "../actions/actions";
+import History from "./History.js";
 import Header from "./header";
 
 function Tab(props) {
@@ -42,7 +43,7 @@ class Tabs extends Component {
         renderElement = null;
         break;
       case "historik":
-        renderElement = null;
+        renderElement = <History historyList={this.props.history}/>;
         break;
       case "kundvagn":
         renderElement = null;
@@ -68,7 +69,8 @@ class Tabs extends Component {
 
 let mapPropsFromStoreState = state => {
   return {
-    selectedTab: state.selectedTab
+    selectedTab: state.selectedTab,
+      history: state.history
   };
 };
 

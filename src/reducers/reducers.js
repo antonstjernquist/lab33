@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { LOGIN, LOGOUT } from "../actions/constants.js";
+
 let valueReducer = (state = 0, action) => {
   switch (action.type) {
     case "UPDATE":
@@ -8,6 +9,10 @@ let valueReducer = (state = 0, action) => {
     default:
       return state;
   }
+};
+
+const historyReducer = (state = [], action) => {
+  return [...state, action];
 };
 
 let selectTabReducer = (state = "home", action) => {
@@ -37,7 +42,8 @@ let userReducer = (state = null, action) => {
 let rootReducer = combineReducers({
   value: valueReducer,
   user: userReducer,
-  selectedTab: selectTabReducer
+  selectedTab: selectTabReducer,
+  history: historyReducer
 });
 
 export default rootReducer;
