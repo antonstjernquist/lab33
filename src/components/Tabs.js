@@ -5,6 +5,7 @@ import { selectTab } from "../actions/actions";
 import Header from "./header.js";
 import Products from './products.js';
 import History from "./History.js";
+import Cart from "./cart.js";
 
 function Tab(props) {
   const handleSelect = () => {
@@ -24,7 +25,7 @@ class Tabs extends Component {
   }
 
   onSelect(item) {
-    console.log(item);
+    // console.log(item);
     const action = selectTab(item);
     this.props.dispatch(action);
   }
@@ -32,7 +33,7 @@ class Tabs extends Component {
   render() {
     const tabs = ["produkter", "historik", "kundvagn", "admin"].map(
       (tab, index) => {
-        console.log(this.props);
+        // console.log(this.props);
         return <Tab tab={tab} key={index} onSelect={this.onSelect} />;
       }
     );
@@ -47,7 +48,7 @@ class Tabs extends Component {
         renderElement = <History historyList={this.props.history}/>;
         break;
       case "kundvagn":
-        renderElement = null;
+        renderElement = <Cart />;
         break;
       case "admin":
         renderElement = null;
@@ -61,7 +62,7 @@ class Tabs extends Component {
         <Header />
         <div className={"flex-column"}>
           <div className={"flex"}>{tabs}</div>
-          <div>{renderElement}</div>
+          {renderElement}
         </div>
       </div>
     );

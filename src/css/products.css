@@ -1,18 +1,36 @@
 .shopWrapper {
   width: 100%;
+  max-width: 600px;
 }
 .productHolder {
-  font-family: sans-serif;
+  font-family: 'Roboto',sans-serif;
   color: #222;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
 }
 .productItem {
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.productItem > .inStore {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  font-size: 0.9em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 .productItem > img {
   width: 180px;
+}
+.productItem button {
+  width: 100%;
+  margin-bottom: 5px;
 }
 
 .productNameHolder {
@@ -38,7 +56,7 @@
   background-color: #f6f6f6;
 }
 
-.sortingDiv button {
+.shopWrapper button, .stylishButton {
   color: #fefefe;
   background-color: #232323;
   padding: 8px 16px;
@@ -46,9 +64,18 @@
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
 }
-.sortingDiv button:hover {
+.shopWrapper button:hover, .stylishButton:hover {
   background-color: #444;
 }
-.sortingDiv button:active {
+.shopWrapper button:active, .stylishButton:active {
   background-color: #222;
+}
+
+
+
+/* Temporary cart */
+.tempCart {
+  background-color: #aaa;
+  margin-top: 40px;
+  padding: 15px;
 }

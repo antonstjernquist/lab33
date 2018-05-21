@@ -5,6 +5,7 @@ header {
   margin: 0px;
   padding: 0px;
   box-shadow: 0 58px 33px -19px #eaedde99;
+  font-family: "Roboto", sans-serif;
 }
 
 .headerWrapper {
@@ -20,7 +21,6 @@ header {
 }
 
 .headerWrapper h1 {
-  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 2.8em;
   margin: 0px;
@@ -28,6 +28,7 @@ header {
 }
 
 .headerWrapper button {
+  margin-left: 15px;
   font-family: "Roboto", sans-serif;
   font-size: 1.2em;
   border: none;
