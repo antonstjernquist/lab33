@@ -13,6 +13,10 @@ let valueReducer = (state = 0, action) => {
   }
 };
 
+const historyReducer = (state = [], action) => {
+  return [...state, action];
+};
+
 let selectTabReducer = (state = "home", action) => {
   switch (action.type) {
     case "SELECT":
@@ -65,7 +69,8 @@ let rootReducer = combineReducers({
   value: valueReducer,
   user: userReducer,
   selectedTab: selectTabReducer,
-  products: productReducer
+  products: productReducer,
+  history: historyReducer
 });
 
 export default rootReducer;
