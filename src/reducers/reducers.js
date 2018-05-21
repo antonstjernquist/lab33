@@ -1,5 +1,8 @@
 import { combineReducers } from "redux";
-import { LOGIN, LOGOUT } from "../actions/constants.js";
+import { LOGIN, LOGOUT, RETRIEVE_PRODUCTS, ADD_PRODUCT } from "../actions/constants.js";
+import { database } from '../firebase';
+
+/* Value reducer */
 let valueReducer = (state = 0, action) => {
   switch (action.type) {
     case "UPDATE":
@@ -11,7 +14,6 @@ let valueReducer = (state = 0, action) => {
 };
 
 let selectTabReducer = (state = "home", action) => {
-  console.log("selectTabReducer ran. Action = ", action);
   switch (action.type) {
     case "SELECT":
       return (state = action.item);
@@ -20,8 +22,8 @@ let selectTabReducer = (state = "home", action) => {
   }
 };
 
+/* User reducer */
 let userReducer = (state = null, action) => {
-  console.log("userReducer ran. Action = ", action);
   switch (action.type) {
     case LOGIN:
       return (state = action.user);
@@ -34,10 +36,36 @@ let userReducer = (state = null, action) => {
   }
 };
 
+/* Product reducer */
+let productReducer = (state = null, action) => {
+  switch (action.type) {
+    case RETRIEVE_PRODUCTS: {
+      /* Defining list */
+      let list = [];
+      /* Pushing items */
+      for(let item in action.data){
+        list.push(action.data[item]);
+      }
+      /* Setting store to the list */
+      return list;
+    }
+
+    case ADD_PRODUCT: {
+      database.addProduct(action.item)
+      return state;
+    }
+
+    default:
+      return state;
+  }
+}
+
+
 let rootReducer = combineReducers({
   value: valueReducer,
   user: userReducer,
-  selectedTab: selectTabReducer
+  selectedTab: selectTabReducer,
+  products: productReducer
 });
 
 export default rootReducer;

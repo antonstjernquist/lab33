@@ -1,5 +1,4 @@
 import { database } from "./firebase.js";
-
 /* Databse functions */
 
 export const editUser = (uid, newUser) => {
@@ -17,3 +16,13 @@ export const updateUser = (uid, state) => {
     }
   });
 };
+
+export const retrieveProducts = () => {
+  console.log('Retrieving products..');
+  return database.ref('products/').once('value');
+}
+
+export const addProduct = item => {
+  console.log('database.js: Adding product.. Item = ', item)
+  return database.ref('products/').push(item);
+}

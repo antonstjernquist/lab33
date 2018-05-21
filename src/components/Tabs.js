@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "../css/tabs.css";
 import { connect } from "react-redux";
 import { selectTab } from "../actions/actions";
-import Header from "./header";
+import Header from "./header.js";
+import Shop from './products.js';
 
 function Tab(props) {
   const handleSelect = () => {
@@ -39,7 +40,7 @@ class Tabs extends Component {
 
     switch (this.props.selectedTab) {
       case "produkter":
-        renderElement = null;
+        renderElement = <Shop />;
         break;
       case "historik":
         renderElement = null;
