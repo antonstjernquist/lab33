@@ -36,7 +36,7 @@ class DisplayMessage extends Component {
       this.autoClose(x);
 
       return (
-        <div key={x.created} className="messageDiv">
+        <div key={x.created + ':' + x.message } className="messageDiv">
           <p> {x.message} </p>
           <p> {x.message === 'Added to cart' ? '(' + this.props.cart.length + ')' : null } </p>
           <button className="stylishButton" onClick={event => this.closeMessage(event, x)}> Close </button>

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, RETRIEVE_PRODUCTS, ADD_PRODUCT, ADD_TO_CART, UNDO, REMOVE_FROM_CART, REMOVE_ALL_FROM_CART, SET_MESSAGE} from "./constants.js";
+import { LOGIN, LOGOUT, RETRIEVE_PRODUCTS, ADD_PRODUCT, REMOVE_PRODUCT, ADD_TO_CART, UNDO, REMOVE_FROM_CART, REMOVE_ALL_FROM_CART, SET_MESSAGE} from "./constants.js";
 
 let actionUpdate = amount => {
   return {
@@ -37,6 +37,13 @@ const actionRetrieveProducts = data => {
 const actionAddProduct = item => {
   return {
     type: ADD_PRODUCT,
+    item
+  }
+}
+
+const actionRemoveProduct = item => {
+  return {
+    type: REMOVE_PRODUCT,
     item
   }
 }
@@ -81,4 +88,4 @@ const actionRemoveMessage = message => {
   }
 }
 
-export { selectTab, actionUpdate, actionLogin, actionLogout, actionRetrieveProducts, actionAddProduct, actionAddToCart, actionUndo, actionRemoveFromCart, actionRemoveAllFromCart, actionSetMessage, actionRemoveMessage};
+export { selectTab, actionUpdate, actionLogin, actionLogout, actionRetrieveProducts, actionAddProduct, actionAddToCart, actionUndo, actionRemoveFromCart, actionRemoveAllFromCart, actionSetMessage, actionRemoveMessage, actionRemoveProduct};

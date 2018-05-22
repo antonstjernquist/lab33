@@ -39,7 +39,6 @@ class Products extends Component {
       let action = actionRetrieveProducts(data);
       this.props.dispatch(action)
     });
-    this.props.dispatch(actionSetMessage('Component mounted'));
   }
 
   handleAddToCartClick = (event, index) => {

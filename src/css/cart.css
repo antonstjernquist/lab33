@@ -24,7 +24,7 @@
 }
 
 .cartItem img {
-  height: 100%;
+  max-width: 100px;
 }
 
 .cartItem {
@@ -35,21 +35,25 @@
   padding: 15px 0px;
 }
 
-/* INfo and details */
+/* Info and details */
 
 .cartItemInfo {
   height: 100%;
+  width: 100%;
   margin: 10px;
 }
 .spanTitle {
+  display: inline-block;
   font-weight: 900;
   margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: -2px;
 }
-.details {
-  margin-top: 10px;
+.spanTitle:first-child {
+  margin-top: 0px;
 }
 .categoryList {
-  margin-top: 5px;
+  margin-top: 15px;
 }
 .categoryItem {
   font-size: 0.8em;
@@ -88,6 +92,10 @@
 
 .paymentDiv button {
   width: 100%;
+}
+.totalPriceDisplay {
+  margin-top: 25px;
+  margin-bottom: 5px;
 }
 .totalPriceDisplay > h4 {
   display: inline-block;

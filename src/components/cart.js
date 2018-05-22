@@ -67,15 +67,15 @@ let Items = props => {
             <span className="spanTitle"> {x.name}</span>
             <br />
             <span> {x.price},00 kr </span>
-            <div className="details">
-              <span className="spanTitle"> Details </span>
-              <br />
-              <span> {x.description} </span>
-              <br />
-              <div className="categoryList">
-                {categoryList}
-              </div>
+            <br />
+            <span className="spanTitle"> Details </span>
+            <br />
+            <span> {x.description} </span>
+            <br />
+            <div className="categoryList">
+              {categoryList}
             </div>
+
 
           </div>
           <div className="buttonHolder">
@@ -113,7 +113,7 @@ class Cart extends Component {
   totalPrice = () => {
     let list = this.props.cart;
     let total = 0;
-    list.forEach(x => total += x.price);
+    list.forEach(x => total += Number(x.price));
     return total;
   }
 

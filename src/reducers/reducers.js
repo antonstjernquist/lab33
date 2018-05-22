@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { LOGIN, LOGOUT, RETRIEVE_PRODUCTS, ADD_PRODUCT, ADD_TO_CART, UNDO, REMOVE_FROM_CART, REMOVE_ALL_FROM_CART, SET_MESSAGE} from "../actions/constants.js";
+import { LOGIN, LOGOUT, RETRIEVE_PRODUCTS, ADD_PRODUCT, REMOVE_PRODUCT, ADD_TO_CART, UNDO, REMOVE_FROM_CART, REMOVE_ALL_FROM_CART, SET_MESSAGE} from "../actions/constants.js";
 import { database } from '../firebase';
 
 /* Value reducer */
@@ -57,6 +57,11 @@ let productReducer = (state = null, action) => {
 
     case ADD_PRODUCT: {
       database.addProduct(action.item)
+      return state;
+    }
+
+    case REMOVE_PRODUCT: {
+      database.removeProduct(action.item)
       return state;
     }
 

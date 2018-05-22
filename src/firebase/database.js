@@ -26,3 +26,8 @@ export const addProduct = item => {
   console.log('database.js: Adding product.. Item = ', item)
   return database.ref('products/').push(item);
 }
+
+export const removeProduct = item => {
+  console.log('database.js: Removing product.. Item = ', item)
+  return database.ref('products/' + item.uid).remove();
+}

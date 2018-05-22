@@ -1,0 +1,96 @@
+.adminDiv {
+  background-color: #f4f4f4;
+  color: #222428;
+  width: 80%;
+  max-width: 800px;
+  margin-top: 15px;
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.92em;
+}
+
+.adminDiv > div {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  align-content: baseline;
+}
+
+.adminDiv > div > div {
+  align-self: flex-start;
+  flex: 1;
+  min-height: 120px;
+  background-color: #fcfcfc;
+  padding: 5px 25px 15px;
+  box-shadow: 0px 0px 4px #e7e7e7;
+  margin: 25px 25px 0px;
+  min-width: 70%;
+}
+
+.adminDiv > div > div:last-child {
+  margin: 25px 25px 25px;
+}
+
+.adminDiv h1 {
+  font-weight: 300;
+}
+
+.adminButtons > button {
+  width: 100%;
+  margin-top: 21px;
+}
+
+input[type="text"], input[type="number"], textarea {
+  border: none;
+  max-width: calc(100% - 30px);
+  min-width: calc(100% - 30px);
+  background-color: #ededed;
+  margin: 3px 0px;
+  padding: 12px 15px;
+  width: calc(100% - 30px);
+  border-radius: 0px;
+  color: #232323;
+  font-family: 'Roboto', sans-serif;
+}
+textarea {
+  font-size: 0.9em;
+  max-width: 20px;
+}
+
+.editProduct > button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.editProduct span {
+  font-family: 'Roboto', sans-serif;
+  color: #404249;
+  display: inline-block;
+  font-size: 0.8em;
+  margin: 10px 0px -2px;
+}
+
+input[type="number"] {
+
+}
+input:invalid {
+  outline: none;
+  box-shadow: none;
+  background-color: #e9cdcd;
+  border: none !important;
+}
+
+/* remove button */
+button.removeButton {
+  background-color: #c66565;
+}
+
+/* Hide spinner thingy */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

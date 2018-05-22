@@ -7,6 +7,7 @@ import Products from './products.js';
 import History from "./History.js";
 import DisplayMessage from "./displaymessage.js";
 import Cart from "./cart.js";
+import Admin from "./admin.js";
 
 function Tab(props) {
   const handleSelect = () => {
@@ -52,7 +53,7 @@ class Tabs extends Component {
         renderElement = <Cart />;
         break;
       case "admin":
-        renderElement = null;
+        renderElement = <Admin />;
         break;
       default:
         renderElement = <h1>Welcome select a option in the menu</h1>;
