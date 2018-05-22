@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { actionRetrieveProducts, actionSetMessage, actionAddProduct, actionRemoveProduct } from "../actions/actions.js";
+import { actionRetrieveProducts, actionSetMessage, actionAddProduct, actionRemoveProduct, actionEditProduct} from "../actions/actions.js";
 import "../css/admin.css";
 import { database } from "../firebase";
 
@@ -35,10 +35,11 @@ class Editproduct extends Component {
 
   }
   componentDidUpdate() {
+    
     /* Dangerous stuff jaooo, legit code ? Idekkk */
-    console.log('Updated. props = ', this.props);
     let item = this.props.item;
     if(item && this.state.uid !== item.uid){
+      console.log('Updated. props = ', this.props);
       this.setState({nameInput: item.name, priceInput: item.price, imageInput: item.imageURL, instoreInput: item.instore, descriptionInput: item.description, uid: item.uid})
     }
   }
@@ -92,8 +93,6 @@ class Editproduct extends Component {
   }
 
   handleSaveClick = () => {
-
-
     let productItem = {
       imageURL: this.state.imageInput,
       name: this.state.nameInput,
@@ -104,9 +103,11 @@ class Editproduct extends Component {
 
     /* Control the product */
     if(this.checkProduct(productItem)){
-      if(this.state.edit){
+      if(this.props.edit){
         let action = null;
+        this.props.dispatch(actionEditProduct(productItem));
         this.props.dispatch(actionSetMessage('Edited product'));
+        this.props.retrieveProducts();
       } else {
         let action = actionAddProduct(productItem);
         this.props.dispatch(action);
@@ -120,28 +121,25 @@ class Editproduct extends Component {
   }
 
   handleChange = (event, type) => {
-
     switch (type) {
-
       case 'IMAGE_INPUT':
         return this.setState({imageInput: event.target.value});
-
       case 'NAME_INPUT':
         return this.setState({nameInput: event.target.value});
-
       case 'PRICE_INPUT':
         return this.setState({priceInput: event.target.value});
-
       case 'DESCRIPTION_INPUT':
         return this.setState({descriptionInput: event.target.value});
-
       case 'INSTORE_INPUT':
         return this.setState({instoreInput: event.target.value});
-
       default:
         return '';
     }
+  }
 
+  handleBackClick = e => {
+    this.props.setItem(e, null)
+    this.clearFields();
   }
 
   render() {
@@ -151,7 +149,10 @@ class Editproduct extends Component {
       if(this.props.item){
         return (
           <div className="editProduct">
-            <h1> Edit product </h1>
+            <div className="editTitle">
+              <h1> Edit product </h1>
+              <button onClick={this.handleBackClick} className="stylishButton"> Back </button>
+            </div>
 
             <span>Image URL</span>
             <input onChange={event => this.handleChange(event, 'IMAGE_INPUT')} value={this.state.imageInput} type="text" placeholder="Product image url"/>

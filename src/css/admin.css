@@ -34,6 +34,10 @@
 .adminDiv h1 {
   font-weight: 300;
 }
+.editTitle {
+  display: flex;
+  justify-content: space-between;
+}
 
 .adminButtons > button {
   width: 100%;
