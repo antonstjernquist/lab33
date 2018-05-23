@@ -1,6 +1,7 @@
 .shopWrapper {
   width: 100%;
-  max-width: 600px;
+  max-width: 1000px;
+  padding-top: 55px;
 }
 .productHolder {
   font-family: 'Roboto',sans-serif;
@@ -11,11 +12,12 @@
   align-items: center;
 }
 .productItem {
-  max-width: 180px;
+  max-width: 260px;
   margin: 10px;
   display: flex;
   flex-direction: column;
   position: relative;
+  align-self: flex-end;
 }
 .productItem > .inStore {
   position: absolute;
@@ -27,10 +29,10 @@
   font-weight: 300;
 }
 .productItem > img {
-  width: 180px;
+  width: 220px;
 }
 .productItem button {
-  width: 180px;
+  width: 220px;
   margin-bottom: 5px;
 }
 
@@ -56,7 +58,7 @@
   font-weight: 300;
 }
 .sortingDiv {
-  display: flex;
+  display: none;
   justify-content: center;
   flex-direction: column;
   margin: 25px;

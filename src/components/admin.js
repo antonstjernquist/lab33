@@ -35,7 +35,7 @@ class Editproduct extends Component {
 
   }
   componentDidUpdate() {
-    
+
     /* Dangerous stuff jaooo, legit code ? Idekkk */
     let item = this.props.item;
     if(item && this.state.uid !== item.uid){
@@ -69,6 +69,8 @@ class Editproduct extends Component {
       return false;
     } else if(item.instore < 1){
       return false;
+    } else if(!item.uid) {
+      return false;
     }
 
     /* Image check */
@@ -98,7 +100,8 @@ class Editproduct extends Component {
       name: this.state.nameInput,
       price: Number(this.state.priceInput),
       description: this.state.descriptionInput,
-      instore: this.state.instoreInput
+      instore: this.state.instoreInput,
+      uid: this.state.uid
     }
 
     /* Control the product */
