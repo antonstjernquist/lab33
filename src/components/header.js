@@ -36,7 +36,7 @@ class Header extends Component {
   };
 
   handleCartClick = event => {
-    let action = selectTab("kundvagn");
+    let action = selectTab("cart");
     this.props.dispatch(action);
   };
 

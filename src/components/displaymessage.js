@@ -33,12 +33,15 @@ class DisplayMessage extends Component {
 
     let list = oldList.map((x, index) => {
       /* Don't print old messages */
-      this.autoClose(x);
+      if(x.created + 5000 < new Date().getTime()){
+        this.closeMessage(null, x)
+      } else if(oldList.length > 2){
+        oldList.pop();
+      }
 
       return (
         <div key={x.created + ':' + x.message } className="messageDiv">
           <p> {x.message} </p>
-          <p> {x.message === 'Added to cart' ? '(' + this.props.cart.length + ')' : null } </p>
           <button className="stylishButton" onClick={event => this.closeMessage(event, x)}> Close </button>
         </div>)
     })

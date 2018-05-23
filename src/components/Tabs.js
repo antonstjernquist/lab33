@@ -33,7 +33,7 @@ class Tabs extends Component {
   }
 
   render() {
-    const tabs = ["produkter", "historik", "kundvagn", "admin"].map(
+    const tabs = ["products", "history", "cart", "admin"].map(
       (tab, index) => {
         // console.log(this.props);
         return <Tab tab={tab} key={index} onSelect={this.onSelect} />;
@@ -43,13 +43,13 @@ class Tabs extends Component {
     let renderElement = null;
 
     switch (this.props.selectedTab) {
-      case "produkter":
+      case "products":
         renderElement = <Products />;
         break;
-      case "historik":
+      case "history":
         renderElement = <History historyList={this.props.history}/>;
         break;
-      case "kundvagn":
+      case "cart":
         renderElement = <Cart />;
         break;
       case "admin":

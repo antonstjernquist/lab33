@@ -10,7 +10,7 @@ let Items = props => {
   }
 
   let handleClick = () => {
-    let action = selectTab('produkter');
+    let action = selectTab('products');
     props.dispatch(action);
   }
 

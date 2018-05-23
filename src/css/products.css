@@ -42,11 +42,11 @@
   margin: 5px auto;
   justify-content: space-between;
   align-items: center;
-  font-size: 1em;
+  font-size: 0.8em;
 }
 .productNameHolder > h3 {
   text-overflow: ellipsis;
-  width: 55%;
+  width: 65%;
   display: block;
   overflow: hidden;
   white-space: nowrap;
@@ -85,6 +85,21 @@
 /* sorting div buttons */
 .sortingDiv button {
   margin: 0px 5px;
+}
+
+/* Hover message */
+
+h3:hover + span, .hoverMessage:hover {
+  display: block;
+}
+
+.hoverMessage {
+  display: none;
+  position: absolute;
+  background-color: #232323;
+  color: #fefefe;
+  padding: 6px 12px;
+  border-radius: 3px;
 }
 
 

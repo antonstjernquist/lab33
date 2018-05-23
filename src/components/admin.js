@@ -62,14 +62,19 @@ class Editproduct extends Component {
 
     /* Some simple checks */
     if(!item.name){
+      console.log('No name.')
       return false;
     } else if(!item.price){
+      console.log('No price.')
       return false;
     } else if(!item.description){
+      console.log('No description.')
       return false;
     } else if(item.instore < 1){
+      console.log('Too few items in store.')
       return false;
-    } else if(!item.uid) {
+    } else if(!item.uid && this.state.edit) {
+      console.log('No uid.');
       return false;
     }
 
@@ -107,7 +112,6 @@ class Editproduct extends Component {
     /* Control the product */
     if(this.checkProduct(productItem)){
       if(this.props.edit){
-        let action = null;
         this.props.dispatch(actionEditProduct(productItem));
         this.props.dispatch(actionSetMessage('Edited product'));
         this.props.retrieveProducts();
@@ -116,6 +120,7 @@ class Editproduct extends Component {
         this.props.dispatch(action);
         this.props.dispatch(actionSetMessage('Created new product'));
         this.props.retrieveProducts();
+        this.clearFields();
       }
     } else {
       this.props.dispatch(actionSetMessage('Could not add product.'));
@@ -277,6 +282,7 @@ class Admin extends Component {
               <h1> Products </h1> <h1>({this.props.products.length} items)</h1>
             </div>
             {list}
+            <p className="pagination">Pagination here </p>
           </div>
 
         </div>

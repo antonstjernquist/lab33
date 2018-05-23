@@ -20,16 +20,6 @@ class Products extends Component {
     });
     console.log('Current products are: ', this.props.products);
 
-    // if(!this.props.products) {
-    //   let newProduct = {
-    //     name: 'Skor',
-    //     price: 799,
-    //     categories: ['shoes', 'spring']
-    //   }
-    //   action = actionAddProduct(newProduct);
-    //   /* Lets push something */
-    //   this.props.dispatch(action);
-    // }
   }
   componentDidMount(){
     database.retrieveProducts()
@@ -48,7 +38,7 @@ class Products extends Component {
     };
     let action = actionAddToCart(item);
     this.props.dispatch(action);
-    this.props.dispatch(actionSetMessage('Added to cart'));
+    this.props.dispatch(actionSetMessage(item.name + ' added!'));
   }
 
   handleUndoClick = event => {
@@ -58,6 +48,13 @@ class Products extends Component {
 
   calculateItemsLeft = item => {
     return item.instore > this.props.cart.filter(x => x.uid === item.uid).length;
+  }
+
+  hoverMessage = name => {
+    if(name.length > 20){
+      return <span className="hoverMessage"> {name} </span>
+    }
+    return null;
   }
 
   render() {
@@ -72,6 +69,7 @@ class Products extends Component {
             <button onClick={event => this.handleAddToCartClick(event, index)} disabled={!this.calculateItemsLeft(x)}> {this.calculateItemsLeft(x) ? 'Add to cart' : 'Out of stock'} </button>
             <div className="productNameHolder">
               <h3> {x.name} </h3>
+              {this.hoverMessage(x.name)}
               <h5> {x.price},00 kr </h5>
 
             </div>
