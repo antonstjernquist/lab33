@@ -14,6 +14,7 @@ let valueReducer = (state = 0, action) => {
 };
 
 const historyReducer = (state = [], action) => {
+  console.log("Inside history action", action);
   return [...state, action];
 };
 

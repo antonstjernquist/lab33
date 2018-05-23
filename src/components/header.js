@@ -4,6 +4,7 @@ import { actionLogin, actionLogout } from "../actions/actions.js";
 import { selectTab } from "../actions/actions";
 import "../css/header.css";
 import { doSignOut, doLogInWithGoogle } from "../firebase/auth.js";
+import {onAuthStateChanged} from "../firebase/auth";
 
 /*
 Material design icons example:
@@ -19,11 +20,13 @@ class Header extends Component {
   }
   async handleLogin(event) {
     console.log(this);
-    console.log("Logging in..");
-    const user = await doLogInWithGoogle();
-    console.log("USER", user);
-    let action = actionLogin(user);
-    this.props.dispatch(action);
+    try {
+        console.log("Logging in..");
+        await doLogInWithGoogle();
+        onAuthStateChanged(this, actionLogin);
+    } catch (e) {
+        throw new Error("Login failed", e);
+    }
   }
 
   handleLogout = event => {
@@ -33,9 +36,9 @@ class Header extends Component {
   };
 
   handleCartClick = event => {
-    let action = selectTab('kundvagn');
+    let action = selectTab("kundvagn");
     this.props.dispatch(action);
-  }
+  };
 
   render() {
     if (this.props.user) {
@@ -44,7 +47,13 @@ class Header extends Component {
           <div className="headerWrapper">
             <h1> Webshop </h1>
             <div className="userDiv">
-              <button onClick={this.handleCartClick} disabled={!this.props.canClickCart}> Cart ({this.props.cart.length})</button>
+              <button
+                onClick={this.handleCartClick}
+                disabled={!this.props.canClickCart}
+              >
+                {" "}
+                Cart ({this.props.cart.length})
+              </button>
               <button onClick={this.handleLogout}> Logout </button>
             </div>
           </div>
@@ -56,7 +65,13 @@ class Header extends Component {
           <div className="headerWrapper">
             <h1> Webshop </h1>
             <div className="userDiv">
-              <button onClick={this.handleCartClick} disabled={!this.props.canClickCart}> Cart ({this.props.cart.length})</button>
+              <button
+                onClick={this.handleCartClick}
+                disabled={!this.props.canClickCart}
+              >
+                {" "}
+                Cart ({this.props.cart.length})
+              </button>
               <button onClick={this.handleLogin}> Login </button>
             </div>
           </div>

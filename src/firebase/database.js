@@ -16,23 +16,27 @@ export const updateUser = (uid, state) => {
     }
   });
 };
+//
+// export const retrieveUser = uid => {
+//     return database.ref("users/" + uid).once("value");
+// };
 
 export const retrieveProducts = () => {
-  console.log('Retrieving products..');
-  return database.ref('products/').once('value');
-}
+  console.log("Retrieving products..");
+  return database.ref("products/").once("value");
+};
 
 export const addProduct = item => {
-  console.log('database.js: Adding product.. Item = ', item)
-  return database.ref('products/').push(item);
-}
+  console.log("database.js: Adding product.. Item = ", item);
+  return database.ref("products/").push(item);
+};
 
 export const editProduct = item => {
-  console.log('database.js: Editing product.. Item = ', item)
-  return database.ref('products/' + item.uid).set(item);
-}
+  console.log("database.js: Editing product.. Item = ", item);
+  return database.ref("products/" + item.uid).set(item);
+};
 
 export const removeProduct = item => {
-  console.log('database.js: Removing product.. Item = ', item)
-  return database.ref('products/' + item.uid).remove();
-}
+  console.log("database.js: Removing product.. Item = ", item);
+  return database.ref("products/" + item.uid).remove();
+};

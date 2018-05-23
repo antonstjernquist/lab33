@@ -10,8 +10,8 @@ import rootReducer from './reducers/reducers.js';
 
 const initialState = {
     value: 4,
-    user: null, /* Null = no user logged in */
     products: [],
+    user: null,
     displayMessage: [],
     cart: {
       past: [],
