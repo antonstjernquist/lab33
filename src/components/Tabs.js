@@ -56,7 +56,7 @@ class Tabs extends Component {
         renderElement = <Admin />;
         break;
       default:
-        renderElement = <h1>Welcome select a option in the menu</h1>;
+        renderElement = <Products />;
     }
 
     return (

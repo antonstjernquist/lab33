@@ -37,12 +37,12 @@
 }
 
 .productNameHolder {
-  width: 180px;
+  width: 210px;
   display: flex;
-  margin: 0px auto;
+  margin: 5px auto;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 .productNameHolder > h3 {
   text-overflow: ellipsis;
