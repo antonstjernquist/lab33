@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import Tabs from "./components/Tabs.js";
 import { connect } from "react-redux";
+import { onAuthStateChanged } from "./firebase/auth";
+import { actionLogin } from "./actions/actions";
 
 class App extends Component {
+  componentDidMount() {
+    onAuthStateChanged(this, actionLogin);
+  }
   render() {
     return (
       <div>
         <Tabs />
-        <p> Value from redux store is: {this.props.value}</p>
       </div>
     );
   }

@@ -1,46 +1,31 @@
 import "../css/history.css";
 import React from "react";
+const Wrapper = (props) => {
+    console.log("ITEM", props.item);
+    const keys = Object.keys(props.item);
+    console.log("Keys", keys);
 
-function History(props) {
-  let reduced = props.historyList.reduce((acc, curr) => {
-    if (acc && curr) {
-      return Object.keys(curr).length > Object.keys(acc).length ? curr : acc;
-    } else {
-      return null;
-    }
-  });
-
-  let ths = Object.keys(reduced).map((key, index) => {
-    return <th key={index}>{key}</th>;
-  });
-  let wrappedHistory = props.historyList.map((item, index) => {
-    let tds = Object.keys(reduced).map((key, index) => {
-      return <td key={index}>{item[key]}</td>;
+    const scraped = keys.map((key, index) => {
+        return (
+            <React.Fragment key={index}>
+                <br />
+                <span className="title">{key}</span>
+                <span className="notTitle">{JSON.stringify(props.item[key]).slice(0, 100)}</span>
+            </React.Fragment>
+        )
     });
-
-    return (
-      <React.Fragment key={index}>
-        <tr>
-          <td>{index + 1}</td>
-          {tds}
-        </tr>
-      </React.Fragment>
-    );
-  });
-
   return (
-    <div className="div-wrapper">
-      <table className="history-wrapper">
-        <thead>
-          <tr>
-            <th>&nbsp;</th>
-            {ths}
-          </tr>
-        </thead>
-        <tbody>{wrappedHistory}</tbody>
-      </table>
-    </div>
-  );
+      <div className="scraped">
+          <span className="title">{props.keypass + 1}</span>
+          {scraped}
+      </div>
+  )
+};
+function History(props) {
+  const divs = props.historyList.map((item, index) => {
+    return <Wrapper keypass={index} key={index} item={item} />;
+  });
+  return <div className="div-wrapper">{divs}</div>;
 }
 
 export default History;
